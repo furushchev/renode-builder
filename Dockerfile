@@ -4,7 +4,7 @@ FROM ubuntu:22.04 AS builder
 
 ARG RENODE_GIT_URL=https://github.com/furushchev/renode.git
 ARG RENODE_GIT_TAG=v1.15.3-stm32h7
-ARG RENODE_BUILD_OPTIONS=-pn
+ARG RENODE_BUILD_OPTIONS=-p
 
 ENV DEBIAN_FRONTEND=noninteractive
 
