@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  release:
     strategy:
       matrix:
         ubuntu-version: [24.04]
