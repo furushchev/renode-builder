@@ -31,4 +31,4 @@ jobs:
         with:
           name: 'output-${{ matrix.ubuntu-version }}-${{ matrix.arch }}'
           retention-days: 1
-          path: ./output/packages/*
+          path: ./output/*

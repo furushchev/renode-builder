@@ -30,4 +30,4 @@ jobs:
         with:
           generate_release_notes: true
           fail_on_unmatched_files: true
-          files: ./output/packages/*
+          files: ./output/
