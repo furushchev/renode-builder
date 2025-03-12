@@ -1,0 +1,34 @@
+name: Build packages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        ubuntu-version: [24.04]
+        arch: [amd64, arm64]
+    runs-on: "${{ format('ubuntu-{0}{1}', matrix.ubuntu-version, matrix.arch == 'arm64' && '-arm' || '') }}"
+    steps:
+      - name: Checkout the project
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - name: Build renode
+        run: |
+          mkdir output
+          docker build -o ./output .
+        env:
+          DOCKER_BUILDKIT: '1'
+      - name: Upload output files
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'output-${{ matrix.ubuntu-version }}-${{ matrix.arch }}'
+          retention-days: 1
+          path: ./output/packages/*
